@@ -55,6 +55,7 @@ const SignUp: React.FC = () => {
         });
 
         await api.post('/users', data).catch((error) => {
+          console.log(data);
           console.log(error);
         });
 
@@ -63,7 +64,7 @@ const SignUp: React.FC = () => {
           'Você já pode fazer login na aplicação.',
         );
 
-        navigation.navigate('SignIn');
+        navigation.goBack();
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -146,7 +147,7 @@ const SignUp: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <BackToSignIn onPress={() => navigation.navigate('SignIn')}>
+      <BackToSignIn onPress={() => navigation.goBack()}>
         <Icon name="arrow-left" size={20} color="#fff" />
         <BackToSignInText>Voltar para logon</BackToSignInText>
       </BackToSignIn>
